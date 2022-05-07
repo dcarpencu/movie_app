@@ -36,10 +36,9 @@ class _HomePageState extends State<HomePage> {
     final double offset = _controller.offset;
     final double extent = _controller.position.maxScrollExtent;
     final Store<AppState> store = StoreProvider.of<AppState>(context);
-    final bool isLoading = store.state.pending.contains(GetMovies.pendingKey);
-    final bool isLoadingMore = store.state.pending.contains(GetMovies.pendingKeyMore);
+    final bool isLoading = <String>[GetMovies.pendingKey, GetMovies.pendingKeyMore].any(store.state.pending.contains);
     if (offset >= extent - MediaQuery.of(context).size.height
-        && !isLoading && !isLoadingMore) {
+        && !isLoading) {
       store.dispatch(GetMovies.more(_onResult));
     }
   }
@@ -85,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (BuildContext context, int index) {
                           if (index == movies.length) {
                             return const Center(
-                                child: CircularProgressIndicator());
+                                child: CircularProgressIndicator(),);
                           }
 
                           final Movie movie = movies[index];

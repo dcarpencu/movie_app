@@ -12,11 +12,50 @@ part of 'index.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$LoginTearOff {
+  const _$LoginTearOff();
+
+  LoginStart start(
+      {required String email,
+      required String password,
+      required ActionResult onResult,
+      String pendingId = _kLoginPendingId}) {
+    return LoginStart(
+      email: email,
+      password: password,
+      onResult: onResult,
+      pendingId: pendingId,
+    );
+  }
+
+  LoginSuccessful successful(AppUser user,
+      [String pendingId = _kLoginPendingId]) {
+    return LoginSuccessful(
+      user,
+      pendingId,
+    );
+  }
+
+  LoginError error(Object error, StackTrace stackTrace,
+      [String pendingId = _kLoginPendingId]) {
+    return LoginError(
+      error,
+      stackTrace,
+      pendingId,
+    );
+  }
+}
+
+/// @nodoc
+const $Login = _$LoginTearOff();
 
 /// @nodoc
 mixin _$Login {
   String get pendingId => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password,
@@ -153,6 +192,7 @@ class _$LoginStartCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ActionStart>()
 class _$LoginStart implements LoginStart {
   const _$LoginStart(
       {required this.email,
@@ -166,8 +206,8 @@ class _$LoginStart implements LoginStart {
   final String password;
   @override
   final ActionResult onResult;
-  @override
   @JsonKey()
+  @override
   final String pendingId;
 
   @override
@@ -281,16 +321,16 @@ class _$LoginStart implements LoginStart {
 
 abstract class LoginStart implements Login, ActionStart {
   const factory LoginStart(
-      {required final String email,
-      required final String password,
-      required final ActionResult onResult,
-      final String pendingId}) = _$LoginStart;
+      {required String email,
+      required String password,
+      required ActionResult onResult,
+      String pendingId}) = _$LoginStart;
 
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  ActionResult get onResult => throw _privateConstructorUsedError;
+  String get email;
+  String get password;
+  ActionResult get onResult;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $LoginStartCopyWith<LoginStart> get copyWith =>
@@ -345,13 +385,15 @@ class _$LoginSuccessfulCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<UserAction>()
+@Implements<ActionDone>()
 class _$LoginSuccessful implements LoginSuccessful {
   const _$LoginSuccessful(this.user, [this.pendingId = _kLoginPendingId]);
 
   @override
   final AppUser user;
-  @override
   @JsonKey()
+  @override
   final String pendingId;
 
   @override
@@ -459,12 +501,12 @@ class _$LoginSuccessful implements LoginSuccessful {
 }
 
 abstract class LoginSuccessful implements Login, UserAction, ActionDone {
-  const factory LoginSuccessful(final AppUser user, [final String pendingId]) =
+  const factory LoginSuccessful(AppUser user, [String pendingId]) =
       _$LoginSuccessful;
 
-  AppUser get user => throw _privateConstructorUsedError;
+  AppUser get user;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $LoginSuccessfulCopyWith<LoginSuccessful> get copyWith =>
@@ -514,6 +556,8 @@ class _$LoginErrorCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ActionDone>()
+@Implements<ErrorAction>()
 class _$LoginError implements LoginError {
   const _$LoginError(this.error, this.stackTrace,
       [this.pendingId = _kLoginPendingId]);
@@ -522,8 +566,8 @@ class _$LoginError implements LoginError {
   final Object error;
   @override
   final StackTrace stackTrace;
-  @override
   @JsonKey()
+  @override
   final String pendingId;
 
   @override
@@ -634,13 +678,13 @@ class _$LoginError implements LoginError {
 }
 
 abstract class LoginError implements Login, ActionDone, ErrorAction {
-  const factory LoginError(final Object error, final StackTrace stackTrace,
-      [final String pendingId]) = _$LoginError;
+  const factory LoginError(Object error, StackTrace stackTrace,
+      [String pendingId]) = _$LoginError;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace get stackTrace;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $LoginErrorCopyWith<LoginError> get copyWith =>
@@ -648,8 +692,48 @@ abstract class LoginError implements Login, ActionDone, ErrorAction {
 }
 
 /// @nodoc
+class _$GetMoviesTearOff {
+  const _$GetMoviesTearOff();
+
+  GetMoviesStart start(ActionResult onResult,
+      {String pendingId = _kGetMoviesPendingId}) {
+    return GetMoviesStart(
+      onResult,
+      pendingId: pendingId,
+    );
+  }
+
+  GetMoviesMore more(ActionResult onResult,
+      {String pendingId = _kGetMoviesPendingId}) {
+    return GetMoviesMore(
+      onResult,
+      pendingId: pendingId,
+    );
+  }
+
+  GetMoviesSuccessful successful(List<Movie> movies, String pendingId) {
+    return GetMoviesSuccessful(
+      movies,
+      pendingId,
+    );
+  }
+
+  GetMoviesError error(Object error, StackTrace stackTrace, String pendingId) {
+    return GetMoviesError(
+      error,
+      stackTrace,
+      pendingId,
+    );
+  }
+}
+
+/// @nodoc
+const $GetMovies = _$GetMoviesTearOff();
+
+/// @nodoc
 mixin _$GetMovies {
   String get pendingId => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ActionResult onResult, String pendingId) start,
@@ -778,14 +862,15 @@ class _$GetMoviesStartCopyWithImpl<$Res> extends _$GetMoviesCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ActionStart>()
 class _$GetMoviesStart implements GetMoviesStart {
   const _$GetMoviesStart(this.onResult,
       {this.pendingId = _kGetMoviesPendingId});
 
   @override
   final ActionResult onResult;
-  @override
   @JsonKey()
+  @override
   final String pendingId;
 
   @override
@@ -892,12 +977,12 @@ class _$GetMoviesStart implements GetMoviesStart {
 }
 
 abstract class GetMoviesStart implements GetMovies, ActionStart {
-  const factory GetMoviesStart(final ActionResult onResult,
-      {final String pendingId}) = _$GetMoviesStart;
+  const factory GetMoviesStart(ActionResult onResult, {String pendingId}) =
+      _$GetMoviesStart;
 
-  ActionResult get onResult => throw _privateConstructorUsedError;
+  ActionResult get onResult;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $GetMoviesStartCopyWith<GetMoviesStart> get copyWith =>
@@ -944,13 +1029,14 @@ class _$GetMoviesMoreCopyWithImpl<$Res> extends _$GetMoviesCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ActionStart>()
 class _$GetMoviesMore implements GetMoviesMore {
   const _$GetMoviesMore(this.onResult, {this.pendingId = _kGetMoviesPendingId});
 
   @override
   final ActionResult onResult;
-  @override
   @JsonKey()
+  @override
   final String pendingId;
 
   @override
@@ -1057,12 +1143,12 @@ class _$GetMoviesMore implements GetMoviesMore {
 }
 
 abstract class GetMoviesMore implements GetMovies, ActionStart {
-  const factory GetMoviesMore(final ActionResult onResult,
-      {final String pendingId}) = _$GetMoviesMore;
+  const factory GetMoviesMore(ActionResult onResult, {String pendingId}) =
+      _$GetMoviesMore;
 
-  ActionResult get onResult => throw _privateConstructorUsedError;
+  ActionResult get onResult;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $GetMoviesMoreCopyWith<GetMoviesMore> get copyWith =>
@@ -1110,17 +1196,12 @@ class _$GetMoviesSuccessfulCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ActionDone>()
 class _$GetMoviesSuccessful implements GetMoviesSuccessful {
-  const _$GetMoviesSuccessful(final List<Movie> movies, this.pendingId)
-      : _movies = movies;
+  const _$GetMoviesSuccessful(this.movies, this.pendingId);
 
-  final List<Movie> _movies;
   @override
-  List<Movie> get movies {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_movies);
-  }
-
+  final List<Movie> movies;
   @override
   final String pendingId;
 
@@ -1229,12 +1310,12 @@ class _$GetMoviesSuccessful implements GetMoviesSuccessful {
 }
 
 abstract class GetMoviesSuccessful implements GetMovies, ActionDone {
-  const factory GetMoviesSuccessful(
-      final List<Movie> movies, final String pendingId) = _$GetMoviesSuccessful;
+  const factory GetMoviesSuccessful(List<Movie> movies, String pendingId) =
+      _$GetMoviesSuccessful;
 
-  List<Movie> get movies => throw _privateConstructorUsedError;
+  List<Movie> get movies;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $GetMoviesSuccessfulCopyWith<GetMoviesSuccessful> get copyWith =>
@@ -1286,6 +1367,8 @@ class _$GetMoviesErrorCopyWithImpl<$Res> extends _$GetMoviesCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ActionDone>()
+@Implements<ErrorAction>()
 class _$GetMoviesError implements GetMoviesError {
   const _$GetMoviesError(this.error, this.stackTrace, this.pendingId);
 
@@ -1404,18 +1487,43 @@ class _$GetMoviesError implements GetMoviesError {
 }
 
 abstract class GetMoviesError implements GetMovies, ActionDone, ErrorAction {
-  const factory GetMoviesError(final Object error, final StackTrace stackTrace,
-      final String pendingId) = _$GetMoviesError;
+  const factory GetMoviesError(
+      Object error, StackTrace stackTrace, String pendingId) = _$GetMoviesError;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace get stackTrace;
   @override
-  String get pendingId => throw _privateConstructorUsedError;
+  String get pendingId;
   @override
   @JsonKey(ignore: true)
   $GetMoviesErrorCopyWith<GetMoviesError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$GetCurrentUserTearOff {
+  const _$GetCurrentUserTearOff();
+
+  GetCurrentUserStart call() {
+    return const GetCurrentUserStart();
+  }
+
+  GetCurrentUserSuccessful successful(AppUser? user) {
+    return GetCurrentUserSuccessful(
+      user,
+    );
+  }
+
+  GetCurrentUserError error(Object error, StackTrace stackTrace) {
+    return GetCurrentUserError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $GetCurrentUser = _$GetCurrentUserTearOff();
 
 /// @nodoc
 mixin _$GetCurrentUser {
@@ -1740,10 +1848,10 @@ class _$GetCurrentUserSuccessful implements GetCurrentUserSuccessful {
 }
 
 abstract class GetCurrentUserSuccessful implements GetCurrentUser {
-  const factory GetCurrentUserSuccessful(final AppUser? user) =
+  const factory GetCurrentUserSuccessful(AppUser? user) =
       _$GetCurrentUserSuccessful;
 
-  AppUser? get user => throw _privateConstructorUsedError;
+  AppUser? get user;
   @JsonKey(ignore: true)
   $GetCurrentUserSuccessfulCopyWith<GetCurrentUserSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1788,6 +1896,7 @@ class _$GetCurrentUserErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ErrorAction>()
 class _$GetCurrentUserError implements GetCurrentUserError {
   const _$GetCurrentUserError(this.error, this.stackTrace);
 
@@ -1892,15 +2001,49 @@ class _$GetCurrentUserError implements GetCurrentUserError {
 }
 
 abstract class GetCurrentUserError implements GetCurrentUser, ErrorAction {
-  const factory GetCurrentUserError(
-      final Object error, final StackTrace stackTrace) = _$GetCurrentUserError;
+  const factory GetCurrentUserError(Object error, StackTrace stackTrace) =
+      _$GetCurrentUserError;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace get stackTrace;
   @JsonKey(ignore: true)
   $GetCurrentUserErrorCopyWith<GetCurrentUserError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$CreateUserTearOff {
+  const _$CreateUserTearOff();
+
+  CreateUserStart call(
+      {required String email,
+      required String password,
+      required String username,
+      required ActionResult onResult}) {
+    return CreateUserStart(
+      email: email,
+      password: password,
+      username: username,
+      onResult: onResult,
+    );
+  }
+
+  CreateUserSuccessful successful(AppUser user) {
+    return CreateUserSuccessful(
+      user,
+    );
+  }
+
+  CreateUserError error(Object error, StackTrace stackTrace) {
+    return CreateUserError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $CreateUser = _$CreateUserTearOff();
 
 /// @nodoc
 mixin _$CreateUser {
@@ -2144,15 +2287,15 @@ class _$CreateUserStart implements CreateUserStart {
 
 abstract class CreateUserStart implements CreateUser {
   const factory CreateUserStart(
-      {required final String email,
-      required final String password,
-      required final String username,
-      required final ActionResult onResult}) = _$CreateUserStart;
+      {required String email,
+      required String password,
+      required String username,
+      required ActionResult onResult}) = _$CreateUserStart;
 
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  ActionResult get onResult => throw _privateConstructorUsedError;
+  String get email;
+  String get password;
+  String get username;
+  ActionResult get onResult;
   @JsonKey(ignore: true)
   $CreateUserStartCopyWith<CreateUserStart> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2306,10 +2449,9 @@ class _$CreateUserSuccessful implements CreateUserSuccessful {
 }
 
 abstract class CreateUserSuccessful implements CreateUser {
-  const factory CreateUserSuccessful(final AppUser user) =
-      _$CreateUserSuccessful;
+  const factory CreateUserSuccessful(AppUser user) = _$CreateUserSuccessful;
 
-  AppUser get user => throw _privateConstructorUsedError;
+  AppUser get user;
   @JsonKey(ignore: true)
   $CreateUserSuccessfulCopyWith<CreateUserSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2353,6 +2495,7 @@ class _$CreateUserErrorCopyWithImpl<$Res> extends _$CreateUserCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ErrorAction>()
 class _$CreateUserError implements CreateUserError {
   const _$CreateUserError(this.error, this.stackTrace);
 
@@ -2463,15 +2606,44 @@ class _$CreateUserError implements CreateUserError {
 }
 
 abstract class CreateUserError implements CreateUser, ErrorAction {
-  const factory CreateUserError(
-      final Object error, final StackTrace stackTrace) = _$CreateUserError;
+  const factory CreateUserError(Object error, StackTrace stackTrace) =
+      _$CreateUserError;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace get stackTrace;
   @JsonKey(ignore: true)
   $CreateUserErrorCopyWith<CreateUserError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$UpdateFavoriteTearOff {
+  const _$UpdateFavoriteTearOff();
+
+  UpdateFavoriteStart call(int id, {required bool add}) {
+    return UpdateFavoriteStart(
+      id,
+      add: add,
+    );
+  }
+
+  UpdateFavoriteSuccessful successful() {
+    return const UpdateFavoriteSuccessful();
+  }
+
+  UpdateFavoriteError error(Object error, StackTrace stackTrace, int id,
+      {required bool add}) {
+    return UpdateFavoriteError(
+      error,
+      stackTrace,
+      id,
+      add: add,
+    );
+  }
+}
+
+/// @nodoc
+const $UpdateFavorite = _$UpdateFavoriteTearOff();
 
 /// @nodoc
 mixin _$UpdateFavorite {
@@ -2688,11 +2860,11 @@ class _$UpdateFavoriteStart implements UpdateFavoriteStart {
 }
 
 abstract class UpdateFavoriteStart implements UpdateFavorite {
-  const factory UpdateFavoriteStart(final int id, {required final bool add}) =
+  const factory UpdateFavoriteStart(int id, {required bool add}) =
       _$UpdateFavoriteStart;
 
-  int get id => throw _privateConstructorUsedError;
-  bool get add => throw _privateConstructorUsedError;
+  int get id;
+  bool get add;
   @JsonKey(ignore: true)
   $UpdateFavoriteStartCopyWith<UpdateFavoriteStart> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2863,6 +3035,7 @@ class _$UpdateFavoriteErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ErrorAction>()
 class _$UpdateFavoriteError implements UpdateFavoriteError {
   const _$UpdateFavoriteError(this.error, this.stackTrace, this.id,
       {required this.add});
@@ -2980,18 +3153,40 @@ class _$UpdateFavoriteError implements UpdateFavoriteError {
 }
 
 abstract class UpdateFavoriteError implements UpdateFavorite, ErrorAction {
-  const factory UpdateFavoriteError(
-      final Object error, final StackTrace stackTrace, final int id,
-      {required final bool add}) = _$UpdateFavoriteError;
+  const factory UpdateFavoriteError(Object error, StackTrace stackTrace, int id,
+      {required bool add}) = _$UpdateFavoriteError;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace get stackTrace => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
-  bool get add => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace get stackTrace;
+  int get id;
+  bool get add;
   @JsonKey(ignore: true)
   $UpdateFavoriteErrorCopyWith<UpdateFavoriteError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$LogoutTearOff {
+  const _$LogoutTearOff();
+
+  LogoutStart call() {
+    return const LogoutStart();
+  }
+
+  LogoutSuccessful successful() {
+    return const LogoutSuccessful();
+  }
+
+  LogoutError error(Object error, StackTrace stackTrace) {
+    return LogoutError(
+      error,
+      stackTrace,
+    );
+  }
+}
+
+/// @nodoc
+const $Logout = _$LogoutTearOff();
 
 /// @nodoc
 mixin _$Logout {
@@ -3314,6 +3509,7 @@ class _$LogoutErrorCopyWithImpl<$Res> extends _$LogoutCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Implements<ErrorAction>()
 class _$LogoutError implements LogoutError {
   const _$LogoutError(this.error, this.stackTrace);
 
@@ -3418,11 +3614,11 @@ class _$LogoutError implements LogoutError {
 }
 
 abstract class LogoutError implements Logout, ErrorAction {
-  const factory LogoutError(final Object error, final StackTrace stackTrace) =
+  const factory LogoutError(Object error, StackTrace stackTrace) =
       _$LogoutError;
 
-  Object get error => throw _privateConstructorUsedError;
-  StackTrace get stackTrace => throw _privateConstructorUsedError;
+  Object get error;
+  StackTrace get stackTrace;
   @JsonKey(ignore: true)
   $LogoutErrorCopyWith<LogoutError> get copyWith =>
       throw _privateConstructorUsedError;

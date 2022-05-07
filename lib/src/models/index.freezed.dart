@@ -12,7 +12,28 @@ part of 'index.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+class _$AppStateTearOff {
+  const _$AppStateTearOff();
+
+  AppState$ call(
+      {List<Movie> movies = const <Movie>[],
+      int pageNumber = 1,
+      AppUser? user,
+      Set<String> pending = const <String>{}}) {
+    return AppState$(
+      movies: movies,
+      pageNumber: pageNumber,
+      user: user,
+      pending: pending,
+    );
+  }
+}
+
+/// @nodoc
+const $AppState = _$AppStateTearOff();
 
 /// @nodoc
 mixin _$AppState {
@@ -136,33 +157,22 @@ class _$AppState$CopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
 class _$AppState$ implements AppState$ {
   const _$AppState$(
-      {final List<Movie> movies = const <Movie>[],
+      {this.movies = const <Movie>[],
       this.pageNumber = 1,
       this.user,
-      final Set<String> pending = const <String>{}})
-      : _movies = movies,
-        _pending = pending;
+      this.pending = const <String>{}});
 
-  final List<Movie> _movies;
-  @override
   @JsonKey()
-  List<Movie> get movies {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_movies);
-  }
-
   @override
+  final List<Movie> movies;
   @JsonKey()
+  @override
   final int pageNumber;
   @override
   final AppUser? user;
-  final Set<String> _pending;
-  @override
   @JsonKey()
-  Set<String> get pending {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_pending);
-  }
+  @override
+  final Set<String> pending;
 
   @override
   String toString() {
@@ -197,19 +207,19 @@ class _$AppState$ implements AppState$ {
 
 abstract class AppState$ implements AppState {
   const factory AppState$(
-      {final List<Movie> movies,
-      final int pageNumber,
-      final AppUser? user,
-      final Set<String> pending}) = _$AppState$;
+      {List<Movie> movies,
+      int pageNumber,
+      AppUser? user,
+      Set<String> pending}) = _$AppState$;
 
   @override
-  List<Movie> get movies => throw _privateConstructorUsedError;
+  List<Movie> get movies;
   @override
-  int get pageNumber => throw _privateConstructorUsedError;
+  int get pageNumber;
   @override
-  AppUser? get user => throw _privateConstructorUsedError;
+  AppUser? get user;
   @override
-  Set<String> get pending => throw _privateConstructorUsedError;
+  Set<String> get pending;
   @override
   @JsonKey(ignore: true)
   $AppState$CopyWith<AppState$> get copyWith =>
@@ -219,6 +229,31 @@ abstract class AppState$ implements AppState {
 AppUser _$AppUserFromJson(Map<String, dynamic> json) {
   return AppUser$.fromJson(json);
 }
+
+/// @nodoc
+class _$AppUserTearOff {
+  const _$AppUserTearOff();
+
+  AppUser$ call(
+      {required String uid,
+      required String email,
+      required String username,
+      List<int> favoriteMovies = const <int>[]}) {
+    return AppUser$(
+      uid: uid,
+      email: email,
+      username: username,
+      favoriteMovies: favoriteMovies,
+    );
+  }
+
+  AppUser fromJson(Map<String, Object?> json) {
+    return AppUser.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $AppUser = _$AppUserTearOff();
 
 /// @nodoc
 mixin _$AppUser {
@@ -329,8 +364,7 @@ class _$AppUser$ implements AppUser$ {
       {required this.uid,
       required this.email,
       required this.username,
-      final List<int> favoriteMovies = const <int>[]})
-      : _favoriteMovies = favoriteMovies;
+      this.favoriteMovies = const <int>[]});
 
   factory _$AppUser$.fromJson(Map<String, dynamic> json) =>
       _$$AppUser$FromJson(json);
@@ -341,13 +375,9 @@ class _$AppUser$ implements AppUser$ {
   final String email;
   @override
   final String username;
-  final List<int> _favoriteMovies;
-  @override
   @JsonKey()
-  List<int> get favoriteMovies {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_favoriteMovies);
-  }
+  @override
+  final List<int> favoriteMovies;
 
   @override
   String toString() {
@@ -366,7 +396,6 @@ class _$AppUser$ implements AppUser$ {
                 .equals(other.favoriteMovies, favoriteMovies));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -388,21 +417,21 @@ class _$AppUser$ implements AppUser$ {
 
 abstract class AppUser$ implements AppUser {
   const factory AppUser$(
-      {required final String uid,
-      required final String email,
-      required final String username,
-      final List<int> favoriteMovies}) = _$AppUser$;
+      {required String uid,
+      required String email,
+      required String username,
+      List<int> favoriteMovies}) = _$AppUser$;
 
   factory AppUser$.fromJson(Map<String, dynamic> json) = _$AppUser$.fromJson;
 
   @override
-  String get uid => throw _privateConstructorUsedError;
+  String get uid;
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get username => throw _privateConstructorUsedError;
+  String get username;
   @override
-  List<int> get favoriteMovies => throw _privateConstructorUsedError;
+  List<int> get favoriteMovies;
   @override
   @JsonKey(ignore: true)
   $AppUser$CopyWith<AppUser$> get copyWith =>
@@ -412,6 +441,35 @@ abstract class AppUser$ implements AppUser {
 Movie _$MovieFromJson(Map<String, dynamic> json) {
   return Movie$.fromJson(json);
 }
+
+/// @nodoc
+class _$MovieTearOff {
+  const _$MovieTearOff();
+
+  Movie$ call(
+      {required int id,
+      required String title,
+      required int year,
+      required double rating,
+      required List<String> genres,
+      @JsonKey(name: 'medium_cover_image') required String poster}) {
+    return Movie$(
+      id: id,
+      title: title,
+      year: year,
+      rating: rating,
+      genres: genres,
+      poster: poster,
+    );
+  }
+
+  Movie fromJson(Map<String, Object?> json) {
+    return Movie.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Movie = _$MovieTearOff();
 
 /// @nodoc
 mixin _$Movie {
@@ -556,9 +614,8 @@ class _$Movie$ implements Movie$ {
       required this.title,
       required this.year,
       required this.rating,
-      required final List<String> genres,
-      @JsonKey(name: 'medium_cover_image') required this.poster})
-      : _genres = genres;
+      required this.genres,
+      @JsonKey(name: 'medium_cover_image') required this.poster});
 
   factory _$Movie$.fromJson(Map<String, dynamic> json) =>
       _$$Movie$FromJson(json);
@@ -571,13 +628,8 @@ class _$Movie$ implements Movie$ {
   final int year;
   @override
   final double rating;
-  final List<String> _genres;
   @override
-  List<String> get genres {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_genres);
-  }
-
+  final List<String> genres;
   @override
   @JsonKey(name: 'medium_cover_image')
   final String poster;
@@ -600,7 +652,6 @@ class _$Movie$ implements Movie$ {
             const DeepCollectionEquality().equals(other.poster, poster));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -624,29 +675,28 @@ class _$Movie$ implements Movie$ {
 
 abstract class Movie$ implements Movie {
   const factory Movie$(
-          {required final int id,
-          required final String title,
-          required final int year,
-          required final double rating,
-          required final List<String> genres,
-          @JsonKey(name: 'medium_cover_image') required final String poster}) =
-      _$Movie$;
+      {required int id,
+      required String title,
+      required int year,
+      required double rating,
+      required List<String> genres,
+      @JsonKey(name: 'medium_cover_image') required String poster}) = _$Movie$;
 
   factory Movie$.fromJson(Map<String, dynamic> json) = _$Movie$.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
+  int get id;
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  int get year => throw _privateConstructorUsedError;
+  int get year;
   @override
-  double get rating => throw _privateConstructorUsedError;
+  double get rating;
   @override
-  List<String> get genres => throw _privateConstructorUsedError;
+  List<String> get genres;
   @override
   @JsonKey(name: 'medium_cover_image')
-  String get poster => throw _privateConstructorUsedError;
+  String get poster;
   @override
   @JsonKey(ignore: true)
   $Movie$CopyWith<Movie$> get copyWith => throw _privateConstructorUsedError;

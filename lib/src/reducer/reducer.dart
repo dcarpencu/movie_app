@@ -17,6 +17,7 @@ AppState reducer(AppState state, dynamic action) {
   if (kDebugMode) {
     print(newState);
   }
+  print('pending: ${newState.pending}');
   return newState;
 }
 

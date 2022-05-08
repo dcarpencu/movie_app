@@ -2,6 +2,7 @@ import 'package:movie_app/src/actions/index.dart';
 import 'package:movie_app/src/data/auth_base_api.dart';
 import 'package:movie_app/src/models/index.dart';
 import 'package:redux_epics/redux_epics.dart';
+// ignore: depend_on_referenced_packages
 import 'package:rxdart/rxdart.dart';
 
 class AuthEpic {

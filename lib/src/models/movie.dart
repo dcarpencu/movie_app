@@ -8,6 +8,7 @@ class Movie with _$Movie {
     required int year,
     required double rating,
     required List<String> genres,
+    // ignore: non_constant_identifier_names
     required String description_full,
     @JsonKey(name: 'large_cover_image') required String posterBig,
     @JsonKey(name: 'medium_cover_image') required String poster,

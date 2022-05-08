@@ -245,6 +245,10 @@ abstract class Comment$ implements Comment {
       throw _privateConstructorUsedError;
 }
 
+AppState _$AppStateFromJson(Map<String, dynamic> json) {
+  return AppState$.fromJson(json);
+}
+
 /// @nodoc
 class _$AppStateTearOff {
   const _$AppStateTearOff();
@@ -267,6 +271,10 @@ class _$AppStateTearOff {
       users: users,
     );
   }
+
+  AppState fromJson(Map<String, Object?> json) {
+    return AppState.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -282,6 +290,7 @@ mixin _$AppState {
   int? get selectedMovieId => throw _privateConstructorUsedError;
   Map<String, AppUser> get users => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -436,7 +445,7 @@ class _$AppState$CopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$AppState$ implements AppState$ {
   const _$AppState$(
       {this.movies = const <Movie>[],
@@ -446,6 +455,9 @@ class _$AppState$ implements AppState$ {
       this.comments = const <Comment>[],
       this.selectedMovieId,
       this.users = const <String, AppUser>{}});
+
+  factory _$AppState$.fromJson(Map<String, dynamic> json) =>
+      _$$AppState$FromJson(json);
 
   @JsonKey()
   @override
@@ -503,6 +515,11 @@ class _$AppState$ implements AppState$ {
   @override
   $AppState$CopyWith<AppState$> get copyWith =>
       _$AppState$CopyWithImpl<AppState$>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AppState$ToJson(this);
+  }
 }
 
 abstract class AppState$ implements AppState {
@@ -514,6 +531,8 @@ abstract class AppState$ implements AppState {
       List<Comment> comments,
       int? selectedMovieId,
       Map<String, AppUser> users}) = _$AppState$;
+
+  factory AppState$.fromJson(Map<String, dynamic> json) = _$AppState$.fromJson;
 
   @override
   List<Movie> get movies;
@@ -790,7 +809,8 @@ mixin _$Movie {
   String get title => throw _privateConstructorUsedError;
   int get year => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
-  List<String> get genres => throw _privateConstructorUsedError;
+  List<String> get genres =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   String get description_full => throw _privateConstructorUsedError;
   @JsonKey(name: 'large_cover_image')
   String get posterBig => throw _privateConstructorUsedError;
@@ -972,7 +992,7 @@ class _$Movie$ implements Movie$ {
   final double rating;
   @override
   final List<String> genres;
-  @override
+  @override // ignore: non_constant_identifier_names
   final String description_full;
   @override
   @JsonKey(name: 'large_cover_image')
@@ -1048,7 +1068,7 @@ abstract class Movie$ implements Movie {
   double get rating;
   @override
   List<String> get genres;
-  @override
+  @override // ignore: non_constant_identifier_names
   String get description_full;
   @override
   @JsonKey(name: 'large_cover_image')

@@ -5,7 +5,6 @@ import 'package:movie_app/src/containers/description_container.dart';
 import 'package:movie_app/src/models/index.dart';
 import 'package:redux/redux.dart';
 
-
 class DescriptionPage extends StatefulWidget {
   const DescriptionPage({Key? key}) : super(key: key);
 
@@ -50,8 +49,9 @@ class _DescriptionPageState extends State<DescriptionPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(movie.description_full),
-                  ),),
-                 ],
+                  ),
+                ),
+              ],
             ),
           ),
         );

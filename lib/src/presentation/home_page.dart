@@ -116,8 +116,7 @@ class _HomePageState extends State<HomePage> {
                                           color: Colors.black,
                                           icon: const Icon(Icons.info),
                                           onPressed: () {
-                                            StoreProvider.of<AppState>(context)
-                                                .dispatch(SetSelectedMovieId(movie.id));
+                                            StoreProvider.of<AppState>(context).dispatch(SetSelectedMovieId(movie.id));
                                             Navigator.pushNamed(context, '/description');
                                           },
                                         ),

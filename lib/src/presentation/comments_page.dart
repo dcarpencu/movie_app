@@ -15,6 +15,8 @@ class CommentsPage extends StatefulWidget {
 
 class _CommentsPageState extends State<CommentsPage> {
   late Store<AppState> _store;
+  final TextEditingController _controller = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -38,19 +40,44 @@ class _CommentsPageState extends State<CommentsPage> {
           ),
           body: CommentsContainer(
             builder: (BuildContext context, List<Comment> comments) {
-              if (comments.isEmpty) {
-                return const Center(
-                  child: Text('No comments.'),
-                );
-              }
-              return ListView.builder(
-                itemCount: comments.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Comment comment = comments[index];
-                  return ListTile(
-                    title: Text(comment.text),
-                  );
-                },
+              return SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    if (comments.isNotEmpty)
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: comments.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final Comment comment = comments[index];
+                          return ListTile(
+                            title: Text(comment.text),
+                          );
+                        },
+                      ),
+                    )
+                    else
+                      const Center(
+                        child: Text('No comments.'),
+                    ),
+                     TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                          suffix: IconButton(
+                            icon: const Icon(Icons.send),
+                            onPressed: (){
+                              if (_controller.text.isEmpty){
+                                return;
+                              }
+                              StoreProvider.of<AppState>(context)
+                                  .dispatch(CreateComment.start(_controller.text));
+                            },
+                          )
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           ),

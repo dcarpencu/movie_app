@@ -762,6 +762,7 @@ class _$MovieTearOff {
       required double rating,
       required List<String> genres,
       required String description_full,
+      @JsonKey(name: 'large_cover_image') required String posterBig,
       @JsonKey(name: 'medium_cover_image') required String poster}) {
     return Movie$(
       id: id,
@@ -770,6 +771,7 @@ class _$MovieTearOff {
       rating: rating,
       genres: genres,
       description_full: description_full,
+      posterBig: posterBig,
       poster: poster,
     );
   }
@@ -790,6 +792,8 @@ mixin _$Movie {
   double get rating => throw _privateConstructorUsedError;
   List<String> get genres => throw _privateConstructorUsedError;
   String get description_full => throw _privateConstructorUsedError;
+  @JsonKey(name: 'large_cover_image')
+  String get posterBig => throw _privateConstructorUsedError;
   @JsonKey(name: 'medium_cover_image')
   String get poster => throw _privateConstructorUsedError;
 
@@ -809,6 +813,7 @@ abstract class $MovieCopyWith<$Res> {
       double rating,
       List<String> genres,
       String description_full,
+      @JsonKey(name: 'large_cover_image') String posterBig,
       @JsonKey(name: 'medium_cover_image') String poster});
 }
 
@@ -828,6 +833,7 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
     Object? rating = freezed,
     Object? genres = freezed,
     Object? description_full = freezed,
+    Object? posterBig = freezed,
     Object? poster = freezed,
   }) {
     return _then(_value.copyWith(
@@ -855,6 +861,10 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
           ? _value.description_full
           : description_full // ignore: cast_nullable_to_non_nullable
               as String,
+      posterBig: posterBig == freezed
+          ? _value.posterBig
+          : posterBig // ignore: cast_nullable_to_non_nullable
+              as String,
       poster: poster == freezed
           ? _value.poster
           : poster // ignore: cast_nullable_to_non_nullable
@@ -875,6 +885,7 @@ abstract class $Movie$CopyWith<$Res> implements $MovieCopyWith<$Res> {
       double rating,
       List<String> genres,
       String description_full,
+      @JsonKey(name: 'large_cover_image') String posterBig,
       @JsonKey(name: 'medium_cover_image') String poster});
 }
 
@@ -895,6 +906,7 @@ class _$Movie$CopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
     Object? rating = freezed,
     Object? genres = freezed,
     Object? description_full = freezed,
+    Object? posterBig = freezed,
     Object? poster = freezed,
   }) {
     return _then(Movie$(
@@ -922,6 +934,10 @@ class _$Movie$CopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
           ? _value.description_full
           : description_full // ignore: cast_nullable_to_non_nullable
               as String,
+      posterBig: posterBig == freezed
+          ? _value.posterBig
+          : posterBig // ignore: cast_nullable_to_non_nullable
+              as String,
       poster: poster == freezed
           ? _value.poster
           : poster // ignore: cast_nullable_to_non_nullable
@@ -940,6 +956,7 @@ class _$Movie$ implements Movie$ {
       required this.rating,
       required this.genres,
       required this.description_full,
+      @JsonKey(name: 'large_cover_image') required this.posterBig,
       @JsonKey(name: 'medium_cover_image') required this.poster});
 
   factory _$Movie$.fromJson(Map<String, dynamic> json) =>
@@ -958,12 +975,15 @@ class _$Movie$ implements Movie$ {
   @override
   final String description_full;
   @override
+  @JsonKey(name: 'large_cover_image')
+  final String posterBig;
+  @override
   @JsonKey(name: 'medium_cover_image')
   final String poster;
 
   @override
   String toString() {
-    return 'Movie(id: $id, title: $title, year: $year, rating: $rating, genres: $genres, description_full: $description_full, poster: $poster)';
+    return 'Movie(id: $id, title: $title, year: $year, rating: $rating, genres: $genres, description_full: $description_full, posterBig: $posterBig, poster: $poster)';
   }
 
   @override
@@ -978,6 +998,7 @@ class _$Movie$ implements Movie$ {
             const DeepCollectionEquality().equals(other.genres, genres) &&
             const DeepCollectionEquality()
                 .equals(other.description_full, description_full) &&
+            const DeepCollectionEquality().equals(other.posterBig, posterBig) &&
             const DeepCollectionEquality().equals(other.poster, poster));
   }
 
@@ -990,6 +1011,7 @@ class _$Movie$ implements Movie$ {
       const DeepCollectionEquality().hash(rating),
       const DeepCollectionEquality().hash(genres),
       const DeepCollectionEquality().hash(description_full),
+      const DeepCollectionEquality().hash(posterBig),
       const DeepCollectionEquality().hash(poster));
 
   @JsonKey(ignore: true)
@@ -1011,6 +1033,7 @@ abstract class Movie$ implements Movie {
       required double rating,
       required List<String> genres,
       required String description_full,
+      @JsonKey(name: 'large_cover_image') required String posterBig,
       @JsonKey(name: 'medium_cover_image') required String poster}) = _$Movie$;
 
   factory Movie$.fromJson(Map<String, dynamic> json) = _$Movie$.fromJson;
@@ -1027,6 +1050,9 @@ abstract class Movie$ implements Movie {
   List<String> get genres;
   @override
   String get description_full;
+  @override
+  @JsonKey(name: 'large_cover_image')
+  String get posterBig;
   @override
   @JsonKey(name: 'medium_cover_image')
   String get poster;

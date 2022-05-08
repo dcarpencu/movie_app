@@ -49,6 +49,7 @@ _$Movie$ _$$Movie$FromJson(Map<String, dynamic> json) => _$Movie$(
       genres:
           (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
       description_full: json['description_full'] as String,
+      posterBig: json['large_cover_image'] as String,
       poster: json['medium_cover_image'] as String,
     );
 
@@ -59,5 +60,6 @@ Map<String, dynamic> _$$Movie$ToJson(_$Movie$ instance) => <String, dynamic>{
       'rating': instance.rating,
       'genres': instance.genres,
       'description_full': instance.description_full,
+      'large_cover_image': instance.posterBig,
       'medium_cover_image': instance.poster,
     };

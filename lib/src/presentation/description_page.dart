@@ -37,49 +37,25 @@ class _DescriptionPageState extends State<DescriptionPage> {
           appBar: AppBar(
             title: Text(movie.title),
           ),
-          body: Center(
-            child: Text(movie.description_full),),
+          body: SafeArea(
+            child: Column(
+              children: <Widget>[
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Image.network(movie.poster),
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(movie.description_full),
+                  ),),
+                 ],
+            ),
+          ),
         );
       },
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-class DescriptionPage extends StatelessWidget {
-  const DescriptionPage({Key? key, required this.builder}) : super(key: key);
-
-  final ViewModelBuilder<AppState> builder;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(movie.title),
-      ),
-      body: Center(
-        child: Text(movie.description),
-      ),
-      ),
-    );
-  }
-}
-*/

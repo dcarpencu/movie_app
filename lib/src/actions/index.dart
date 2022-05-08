@@ -11,6 +11,7 @@ part 'logout.dart';
 part 'listen_for_comments.dart';
 part 'set.dart';
 part 'create_comment.dart';
+part 'get_user.dart';
 
 abstract class AppAction {}
 

@@ -6,7 +6,7 @@ const String _kCreateCommentPendingId = 'CreateComment';
 class CreateComment with _$CreateComment implements AppAction {
   @Implements<ActionStart>()
   const factory CreateComment.start(
-      String text, {
+    String text, {
     @Default(_kCreateCommentPendingId) String pendingId,
   }) = CreateCommentStart;
 
@@ -18,7 +18,8 @@ class CreateComment with _$CreateComment implements AppAction {
   @Implements<ActionDone>()
   @Implements<ErrorAction>()
   const factory CreateComment.error(
-    Object error, StackTrace stackTrace, [
+    Object error,
+    StackTrace stackTrace, [
     @Default(_kCreateCommentPendingId) String pendingId,
   ]) = CreateCommentError;
 

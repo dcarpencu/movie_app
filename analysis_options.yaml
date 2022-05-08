@@ -4,6 +4,7 @@ analyzer:
     invalid_annotation_target: ignore
     todo: ignore
   exclude:
+    - "**/src/rx.dart"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.config.dart"

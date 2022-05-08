@@ -49,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
       body: Form(
         child: PendingContainer(
           builder: (BuildContext context, Set<String> pending) {
-            print ('pending: $pending');
             if (pending.contains(Login.pendingKey)) {
               return const Center(
                 child: CircularProgressIndicator(),

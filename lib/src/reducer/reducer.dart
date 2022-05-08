@@ -17,7 +17,6 @@ AppState reducer(AppState state, dynamic action) {
   if (kDebugMode) {
     print(newState);
   }
-  print('pending: ${newState.pending}');
   return newState;
 }
 
@@ -26,7 +25,6 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   movieReducer,
   TypedReducer<AppState, ActionStart>(_actionStart),
   TypedReducer<AppState, ActionDone>(_actionDone),
-
 ]);
 
 AppState _actionStart(AppState state, ActionStart action) {

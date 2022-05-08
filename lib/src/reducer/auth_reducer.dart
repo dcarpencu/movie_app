@@ -23,10 +23,9 @@ AppState _createUserSuccessful(AppState state, CreateUserSuccessful action) {
   return state.copyWith(user: action.user);
 }
 
-
 AppState _updateFavoriteStart(AppState state, UpdateFavoriteStart action) {
   final List<int> favoriteMovies = <int>[...state.user!.favoriteMovies];
-  if(action.add) {
+  if (action.add) {
     favoriteMovies.add(action.id);
   } else {
     favoriteMovies.remove(action.id);
@@ -37,7 +36,7 @@ AppState _updateFavoriteStart(AppState state, UpdateFavoriteStart action) {
 
 AppState _updateFavoriteError(AppState state, UpdateFavoriteError action) {
   final List<int> favoriteMovies = <int>[...state.user!.favoriteMovies];
-  if(action.add) {
+  if (action.add) {
     favoriteMovies.remove(action.id);
   } else {
     favoriteMovies.add(action.id);
@@ -49,4 +48,3 @@ AppState _updateFavoriteError(AppState state, UpdateFavoriteError action) {
 AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
   return state.copyWith(user: null);
 }
-

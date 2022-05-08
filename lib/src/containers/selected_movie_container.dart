@@ -13,7 +13,7 @@ class SelectedMovieContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, Movie>(
       converter: (Store<AppState> store) =>
-          store.state.movies.firstWhere((Movie movie) =>  movie.id == store.state.selectedMovieId),
+          store.state.movies.firstWhere((Movie movie) => movie.id == store.state.selectedMovieId),
       builder: builder,
     );
   }

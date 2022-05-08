@@ -41,11 +41,11 @@ class MovieApi {
   Future<void> createComment({required String uid, required int movieId, required String text}) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('comments').doc();
     final Comment comment = Comment(
-        id: ref.id,
-        uid: uid,
-        movieId: movieId,
-        text: text,
-        createdAt: DateTime.now(),
+      id: ref.id,
+      uid: uid,
+      movieId: movieId,
+      text: text,
+      createdAt: DateTime.now(),
     );
 
     await ref.set(comment.toJson());

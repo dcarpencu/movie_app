@@ -8,7 +8,7 @@ class Comment with _$Comment {
     required int movieId,
     required String text,
     required DateTime createdAt,
-}) = Comment$;
+  }) = Comment$;
 
   factory Comment.fromJson(Map<dynamic, dynamic> json) => _$CommentFromJson(Map<String, dynamic>.from(json));
 }

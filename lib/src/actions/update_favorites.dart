@@ -8,9 +8,9 @@ class UpdateFavorite with _$UpdateFavorite implements AppAction {
 
   @Implements<ErrorAction>()
   const factory UpdateFavorite.error(
-      Object error,
-      StackTrace stackTrace,
-      int id, {
-        required bool add,
+    Object error,
+    StackTrace stackTrace,
+    int id, {
+    required bool add,
   }) = UpdateFavoriteError;
 }

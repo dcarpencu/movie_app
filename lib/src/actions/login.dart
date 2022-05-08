@@ -29,4 +29,3 @@ class Login with _$Login implements AppAction {
 
   static String get pendingKey => _kLoginPendingId;
 }
-

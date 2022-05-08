@@ -6,7 +6,7 @@ import 'package:movie_app/src/containers/movies_container.dart';
 import 'package:movie_app/src/containers/pending_container.dart';
 import 'package:movie_app/src/containers/user_container.dart';
 import 'package:movie_app/src/models/index.dart';
-import 'package:redux/src/store.dart';
+import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,8 +37,7 @@ class _HomePageState extends State<HomePage> {
     final double extent = _controller.position.maxScrollExtent;
     final Store<AppState> store = StoreProvider.of<AppState>(context);
     final bool isLoading = <String>[GetMovies.pendingKey, GetMovies.pendingKeyMore].any(store.state.pending.contains);
-    if (offset >= extent - MediaQuery.of(context).size.height
-        && !isLoading) {
+    if (offset >= extent - MediaQuery.of(context).size.height && !isLoading) {
       store.dispatch(GetMovies.more(_onResult));
     }
   }
@@ -48,7 +47,6 @@ class _HomePageState extends State<HomePage> {
     _controller.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +82,8 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (BuildContext context, int index) {
                           if (index == movies.length) {
                             return const Center(
-                                child: CircularProgressIndicator(),);
+                              child: CircularProgressIndicator(),
+                            );
                           }
 
                           final Movie movie = movies[index];
@@ -92,8 +91,7 @@ class _HomePageState extends State<HomePage> {
 
                           return GestureDetector(
                             onTap: () {
-                              StoreProvider.of<AppState>(context)
-                                  .dispatch(SetSelectedMovieId(movie.id));
+                              StoreProvider.of<AppState>(context).dispatch(SetSelectedMovieId(movie.id));
                               Navigator.pushNamed(context, '/comments');
                             },
                             child: Column(
@@ -102,7 +100,8 @@ class _HomePageState extends State<HomePage> {
                                   children: <Widget>[
                                     SizedBox(
                                       height: 320,
-                                      child: Image.network(movie.poster),),
+                                      child: Image.network(movie.poster),
+                                    ),
                                     IconButton(
                                       color: Colors.red,
                                       icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
@@ -121,7 +120,8 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                       );
-                    },);
+                    },
+                  );
                 },
               );
             },

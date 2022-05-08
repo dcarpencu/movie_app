@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_app/src/data/auth_base_api.dart';
 import 'package:movie_app/src/models/index.dart';
 
-class AuthApi implements AuthApiBase{
+class AuthApi implements AuthApiBase {
   AuthApi(this._auth, this._firestore);
 
   final FirebaseAuth _auth;
@@ -13,8 +13,7 @@ class AuthApi implements AuthApiBase{
   Future<AppUser?> getCurrentUser() async {
     final User? currentUser = _auth.currentUser;
     if (currentUser != null) {
-      final DocumentSnapshot<Map<String, dynamic>> snapshot =
-      await _firestore.doc('users/${currentUser.uid}').get();
+      final DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore.doc('users/${currentUser.uid}').get();
 
       if (snapshot.exists) {
         return AppUser.fromJson(snapshot.data()!);
@@ -29,7 +28,7 @@ class AuthApi implements AuthApiBase{
         return user;
       }
     }
-      return null;
+    return null;
   }
 
   @override
@@ -37,7 +36,7 @@ class AuthApi implements AuthApiBase{
     await _auth.signInWithEmailAndPassword(email: email, password: password);
 
     final DocumentSnapshot<Map<String, dynamic>> snapshot =
-    await _firestore.doc('users/${_auth.currentUser!.uid}').get();
+        await _firestore.doc('users/${_auth.currentUser!.uid}').get();
     return AppUser.fromJson(snapshot.data()!);
   }
 
@@ -58,13 +57,12 @@ class AuthApi implements AuthApiBase{
   }
 
   @override
-  Future<void> logOut () async {
+  Future<void> logOut() async {
     await _auth.signOut();
   }
 
   @override
   Future<void> updateFavorites(String uid, int id, {required bool add}) async {
-    final List<int> ids = _getCurrentFavorite();
     await _firestore.runTransaction<void>((Transaction transaction) async {
       final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
 
@@ -78,9 +76,5 @@ class AuthApi implements AuthApiBase{
 
       transaction.set(_firestore.doc('users/$uid'), user.toJson());
     });
-  }
-
-  List<int> _getCurrentFavorite() {
-    return [];
   }
 }

@@ -28,35 +28,34 @@ class _CommentsPageState extends State<CommentsPage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SelectedMovieContainer(
-        builder: (BuildContext context, Movie movie) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(movie.title),
-            ),
-            body: CommentsContainer(
-              builder: (BuildContext context, List<Comment> comments) {
-                if (comments.isEmpty) {
-                  return const Center(
-                    child: Text('No comments.'),
-                  );
-                }
-                return ListView.builder(
-                  itemCount: comments.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Comment comment = comments[index];
-                    return ListTile(
-                        title: Text(comment.text),
-                    );
-                  },
+      builder: (BuildContext context, Movie movie) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(movie.title),
+          ),
+          body: CommentsContainer(
+            builder: (BuildContext context, List<Comment> comments) {
+              if (comments.isEmpty) {
+                return const Center(
+                  child: Text('No comments.'),
                 );
-              },
-            ),
-          );
-        },
+              }
+              return ListView.builder(
+                itemCount: comments.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final Comment comment = comments[index];
+                  return ListTile(
+                    title: Text(comment.text),
+                  );
+                },
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

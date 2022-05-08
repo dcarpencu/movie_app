@@ -42,10 +42,10 @@ class _SignUpPageState extends State<SignUpPage> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
       }
     } else if (action is CreateUserSuccessful) {
-        Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+      Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
     }
-      //
-    }
+    //
+  }
 
   @override
   Widget build(BuildContext context) {

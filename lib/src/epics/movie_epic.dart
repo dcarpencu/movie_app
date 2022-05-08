@@ -42,18 +42,15 @@ class MovieEpic {
 
   Stream<AppAction> _listenForComments(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<ListenForCommentsStart>().flatMap((ListenForCommentsStart action) {
-      return _api
-          .listenForComments(action.movieId)
-          .expand((List<Comment> comments) {
-            return <AppAction>[
-              ListenForComments.event(comments),
-              ...comments
-                  .where((Comment comment) => store.state.users[comment.uid] == null)
-                  .map((Comment comment) => GetUser(comment.uid))
-                  .toSet(),
-            ];
-      })
-          .takeUntil<dynamic>(
+      return _api.listenForComments(action.movieId).expand((List<Comment> comments) {
+        return <AppAction>[
+          ListenForComments.event(comments),
+          ...comments
+              .where((Comment comment) => store.state.users[comment.uid] == null)
+              .map((Comment comment) => GetUser(comment.uid))
+              .toSet(),
+        ];
+      }).takeUntil<dynamic>(
         actions.where((dynamic event) {
           return event is ListenForCommentsDone && event.movieId == action.movieId;
         }),
@@ -66,7 +63,10 @@ class MovieEpic {
       return Stream<void>.value(null)
           .asyncMap((_) {
             return _api.createComment(
-                uid: store.state.user!.uid, movieId: store.state.selectedMovieId!, text: action.text,);
+              uid: store.state.user!.uid,
+              movieId: store.state.selectedMovieId!,
+              text: action.text,
+            );
           })
           .mapTo(const CreateComment.successful())
           .onErrorReturnWith($CreateComment.error);

@@ -41,55 +41,55 @@ class _CommentsPageState extends State<CommentsPage> {
           ),
           body: UsersContainer(
             builder: (BuildContext context, Map<String, AppUser> users) {
-            return CommentsContainer(
-              builder: (BuildContext context, List<Comment> comments) {
-                return SafeArea(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      if (comments.isNotEmpty)
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: comments.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final Comment comment = comments[index];
-                              final AppUser user = users[comment.uid]!;
+              return CommentsContainer(
+                builder: (BuildContext context, List<Comment> comments) {
+                  return SafeArea(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        if (comments.isNotEmpty)
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: comments.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final Comment comment = comments[index];
+                                final AppUser user = users[comment.uid]!;
 
-                              return ListTile(
-                                title: Text(comment.text),
-                                subtitle: Text(<Object>[user.username, comment.createdAt].join('\n'),
-                                ),
-                              );
-                            },
+                                return ListTile(
+                                  title: Text(comment.text),
+                                  subtitle: Text(
+                                    <Object>[user.username, comment.createdAt].join('\n'),
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        else
+                          const Center(
+                            child: Text('No comments.'),
                           ),
-                        )
-                      else
-                        const Center(
-                          child: Text('No comments.'),
-                        ),
-                      TextField(
-                        controller: _controller,
-                        decoration: InputDecoration(
+                        TextField(
+                          controller: _controller,
+                          decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                             suffix: IconButton(
                               icon: const Icon(Icons.send),
-                              onPressed: (){
-                                if (_controller.text.isEmpty){
+                              onPressed: () {
+                                if (_controller.text.isEmpty) {
                                   return;
                                 }
-                                StoreProvider.of<AppState>(context)
-                                    .dispatch(CreateComment.start(_controller.text));
+                                StoreProvider.of<AppState>(context).dispatch(CreateComment.start(_controller.text));
                                 _controller.clear();
                               },
                             ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
         );
       },

@@ -10,6 +10,7 @@ import 'package:movie_app/src/data/movie_api.dart';
 import 'package:movie_app/src/epics/app_epic.dart';
 import 'package:movie_app/src/models/index.dart';
 import 'package:movie_app/src/presentation/comments_page.dart';
+import 'package:movie_app/src/presentation/description_page.dart';
 import 'package:movie_app/src/presentation/home.dart';
 import 'package:movie_app/src/presentation/login_page.dart';
 import 'package:movie_app/src/presentation/sign_up_page.dart';
@@ -54,6 +55,7 @@ class MoviesApp extends StatelessWidget {
           '/signUp': (BuildContext context) => const SignUpPage(),
           '/login': (BuildContext context) => const LoginPage(),
           '/comments': (BuildContext context) => const CommentsPage(),
+          '/description': (BuildContext context) => const DescriptionPage(),
         },
       ),
     );

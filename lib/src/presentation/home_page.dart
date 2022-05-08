@@ -102,13 +102,26 @@ class _HomePageState extends State<HomePage> {
                                       height: 320,
                                       child: Image.network(movie.poster),
                                     ),
-                                    IconButton(
-                                      color: Colors.red,
-                                      icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
-                                      onPressed: () {
-                                        StoreProvider.of<AppState>(context)
-                                            .dispatch(UpdateFavorite(movie.id, add: !isFavorite));
-                                      },
+                                    Column(
+                                      children: <Widget>[
+                                        IconButton(
+                                          color: Colors.red,
+                                          icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border),
+                                          onPressed: () {
+                                            StoreProvider.of<AppState>(context)
+                                                .dispatch(UpdateFavorite(movie.id, add: !isFavorite));
+                                          },
+                                        ),
+                                        IconButton(
+                                          color: Colors.black,
+                                          icon: const Icon(Icons.info),
+                                          onPressed: () {
+                                            StoreProvider.of<AppState>(context)
+                                                .dispatch(SetSelectedMovieId(movie.id));
+                                            Navigator.pushNamed(context, '/description');
+                                          },
+                                        ),
+                                      ],
                                     )
                                   ],
                                 ),

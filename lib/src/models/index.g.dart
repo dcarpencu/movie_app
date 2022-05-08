@@ -6,6 +6,23 @@ part of 'index.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$Comment$ _$$Comment$FromJson(Map<String, dynamic> json) => _$Comment$(
+      id: json['id'] as String,
+      uid: json['uid'] as String,
+      movieId: json['movieId'] as int,
+      text: json['text'] as String,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+    );
+
+Map<String, dynamic> _$$Comment$ToJson(_$Comment$ instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'uid': instance.uid,
+      'movieId': instance.movieId,
+      'text': instance.text,
+      'createdAt': instance.createdAt.toIso8601String(),
+    };
+
 _$AppUser$ _$$AppUser$FromJson(Map<String, dynamic> json) => _$AppUser$(
       uid: json['uid'] as String,
       email: json['email'] as String,

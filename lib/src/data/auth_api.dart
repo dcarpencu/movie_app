@@ -63,25 +63,24 @@ class AuthApi implements AuthApiBase{
   }
 
   @override
-  Future<void> updateFavorites(int id, {required bool add}) async {
+  Future<void> updateFavorites(String uid, int id, {required bool add}) async {
     final List<int> ids = _getCurrentFavorite();
-    
-    if(add) {
-      ids.add(id);
-    } else {
-      ids.remove(id);
-    }
+    await _firestore.runTransaction<void>((Transaction transaction) async {
+      final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
+
+      AppUser user = AppUser.fromJson(snapshot.data()!);
+
+      if (add) {
+        user = user.copyWith(favoriteMovies: <int>[...user.favoriteMovies, id]);
+      } else {
+        user = user.copyWith(favoriteMovies: <int>[...user.favoriteMovies]..remove(id));
+      }
+
+      transaction.set(_firestore.doc('users/$uid'), user.toJson());
+    });
   }
 
   List<int> _getCurrentFavorite() {
-    /*final String? data = _preferences.getString(_kFavoriteMoviesKey);
-
-    List<int> ids;
-    if(data != null) {
-      ids = List<int>.from(jsonDecode(data) as List<dynamic>);
-    } else {
-      ids = <int>[];
-    }*/
     return [];
   }
 }

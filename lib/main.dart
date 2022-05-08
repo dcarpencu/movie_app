@@ -9,13 +9,14 @@ import 'package:movie_app/src/data/auth_api.dart';
 import 'package:movie_app/src/data/movie_api.dart';
 import 'package:movie_app/src/epics/app_epic.dart';
 import 'package:movie_app/src/models/index.dart';
+import 'package:movie_app/src/presentation/comments_page.dart';
 import 'package:movie_app/src/presentation/home.dart';
 import 'package:movie_app/src/presentation/login_page.dart';
 import 'package:movie_app/src/presentation/sign_up_page.dart';
 import 'package:movie_app/src/reducer/reducer.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,7 @@ Future<void> main() async {
   final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: app);
 
   final Client client = Client();
-  final MovieApi movieApi = MovieApi(client);
+  final MovieApi movieApi = MovieApi(client, firestore);
   final AuthApi authApi = AuthApi(auth, firestore);
   final AppEpic epic = AppEpic(movieApi, authApi);
 
@@ -53,6 +54,7 @@ class MoviesApp extends StatelessWidget {
           '/': (BuildContext context) => const Home(),
           '/signUp': (BuildContext context) => const SignUpPage(),
           '/login': (BuildContext context) => const LoginPage(),
+          '/comments': (BuildContext context) => const CommentsPage(),
         },
       ),
     );

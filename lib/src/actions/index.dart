@@ -8,6 +8,9 @@ part 'get_current_user.dart';
 part 'create_user.dart';
 part 'update_favorites.dart';
 part 'logout.dart';
+part 'listen_for_comments.dart';
+part 'set.dart';
+part 'create_comment.dart';
 
 abstract class AppAction {}
 
